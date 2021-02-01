@@ -6,15 +6,22 @@
  */
 
 public class ArrayProcessing {
-	
+
 	/**
 	 * Find the maximum element in an array of integers
 	 * @param a the array
 	 * @return the maximum element
 	 */
 	public int findMax(int[] a) {
-		
-		return 0;
+		int max = 0;
+		int compare = 0;
+		for (int i = 0; i < a.length; i++) {
+			compare = a[i];
+			if (compare > max) {
+				max = compare;
+			}
+		}
+		return max;
 	}
 	
 	/**
@@ -23,8 +30,15 @@ public class ArrayProcessing {
 	 * @return the minimum
 	 */
 	public int findMin(int[] a) {	
-		
-		return 0;
+		int min = a[0];
+		int compare = 0;
+		for (int i = 1; i < a.length; i++) {
+			compare = a[i];
+			if (compare < min) {
+				min = compare;
+			}
+		}
+		return min;
 		
 	}
 	
@@ -34,8 +48,13 @@ public class ArrayProcessing {
 	 * @return the average
 	 */
 	public int findAverage(int[]a) {
-		
-		return 0;	
+		int avg;
+		int sum = 0;
+		for (int i = 0; i < a.length; i++) {
+			sum += a[i];
+		}
+		avg = sum / a.length;
+		return avg;	
 		
 	}
 	
@@ -46,8 +65,13 @@ public class ArrayProcessing {
 	 * @return true if value is found, false otherwise
 	 */
 	public boolean search(int[] a, int target) {
-		
-		return false;
+		boolean t = false;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] == target) {
+				t = true;
+			}
+		}
+		return t;
 	}
 	
 	/**
@@ -55,7 +79,9 @@ public class ArrayProcessing {
 	 * @param a the array to print
 	 */
 	public void printArray(int[] a) {
-			
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i]);
+		}
 	}
 	
 	/**
@@ -64,6 +90,9 @@ public class ArrayProcessing {
 	 * @param a the array
 	 */
 	public void printCommaDelimitedArray(int[] a) {
-			
+		for (int i = 0; i < a.length - 1; i++) {
+			System.out.print(a[i] + ",");
+		}		
+		System.out.print(a[a.length - 1]);
 	}
 }

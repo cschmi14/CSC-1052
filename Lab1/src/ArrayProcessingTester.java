@@ -1,11 +1,10 @@
-
 public class ArrayProcessingTester {
 	
 	public static void main(String[] args) {
 		
 		int[] array = {100, -5, 75, 30, 50};
 		
-		ArrayProcessingSolution ap = new ArrayProcessingSolution();
+		ArrayProcessing ap = new ArrayProcessing();
 		
 		//Test max
 		int max = ap.findMax(array);
