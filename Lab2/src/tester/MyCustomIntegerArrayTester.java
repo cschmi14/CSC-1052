@@ -1,5 +1,5 @@
 package tester;
-
+import custom.MyCustomIntegerArray;
 public class MyCustomIntegerArrayTester {
 	
 	public static void main(String[] args) {
