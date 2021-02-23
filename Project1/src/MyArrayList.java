@@ -1,7 +1,7 @@
 
-public class MyArrayList<T> implements ListInterface<T>{
+public class MyArrayList<T>{
 
-	T[] arr = (T[]) new Object[DEFAULT_CAPACITY];
+	T[] arr = (T[]) new Object[5];
 	
 	/**
 	 * Adds an element to the list, keeping the order of the list in tact
@@ -10,23 +10,26 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 */
 	
 	public void add(T t) {
-		Integer i = 0;
-		boolean stop = false;
-		while (i < arr.length && stop == false) {
-
-			if (arr[i] == null) {
+		T element = arr[0];
+		boolean full = true;
+		for (int i = 0; i < arr.length; i++) {
+			
+			element = arr[i];
+			if (element == null) {
 				arr[i] = t;
-				i = arr.length;
-				stop = true;
+				full = false;
 			}
-			i++;
+			
 		}
-		if (stop = false) {
+		if (full) {
 			T[] arr2 = (T[]) new Object[arr.length + 1];
+			for (int i = 0; i < arr.length; i++) {				
+				element = arr[i];
+				arr2[i] = element;
+			}
 			arr2[arr.length] = t;
 			arr = arr2;
 		}
-		
 		
 		
 	}
@@ -105,22 +108,36 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 * at position larger than the array size.
 	 */
 	public void add(int pos, T t) throws MyIndexOutOfBoundsException, ArrayIndexOutOfBoundsException {
-		
+		T element = arr[0];
+		boolean full = true;
 		if (pos > arr.length || pos < 0) {
 			throw new MyIndexOutOfBoundsException();
 		}
 		else {
-			T[] arr2 = (T[]) new Object[arr.length + 1];
-				for (int i = 0, j = 0; i <= arr.length; i++) {
-					if (i != pos) {
-					    arr2[i] = arr[j];
-					    j++;
+			for (int i = 0; i < arr.length; i++) {
+				element = arr[i];
+				if (element == null) {
+					full = false;
+				}			
+			}
+			if (full) {
+				T[] arr2 = (T[]) new Object[arr.length + 1];
+				for (int i = 0, j = 0; i < arr.length; i++, j++) {				
+					element = arr[i];
+					if (j == pos) {
+						arr2[j] = t;
+						i--;
 					}
-					else if (i == pos) {
-						arr2[i] = t;
+					else {
+						arr2[j] = element;
 					}
 				}
-			arr = arr2;
+				arr2[pos] = t;
+				arr = arr2;
+			}
+			else {
+				arr[pos] = t;
+			}
 		}
 		
 	}
@@ -135,22 +152,31 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 */
 	public void set(int pos, T t) throws MyIndexOutOfBoundsException, ArrayIndexOutOfBoundsException {
 		
-		if (pos >= arr.length || pos < 0) {
+		T element = arr[0];
+		boolean full = true;
+		if (pos > arr.length || pos < 0) {
 			throw new MyIndexOutOfBoundsException();
 		}
 		else {
-			T[] arr2 = (T[]) new Object[arr.length + 1];
 			for (int i = 0; i < arr.length; i++) {
-				if (i != pos) {
-				    arr2[i] = arr[i];
+				element = arr[i];
+				if (element == null) {
+					full = false;
+				}			
+			}
+			if (full) {
+				T[] arr2 = (T[]) new Object[arr.length];
+				for (int i = 0; i < arr.length; i++) {				
+					element = arr[i];
+					arr2[i] = element;
 				}
-				else {
-					arr2[i] = t;
-				}
+				arr2[pos] = t;
 				arr = arr2;
 			}
+			else {
+				arr[pos] = t;
+			}
 		}
-		
 	}
 	
 	/**

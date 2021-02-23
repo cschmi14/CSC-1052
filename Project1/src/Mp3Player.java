@@ -245,8 +245,6 @@ public class Mp3Player extends JPanel implements ActionListener{
         songList.add(2,t2);
         songList.set(2, t5);
         
-        System.out.println(songList.get(0).toString());
-        
         if(songList.contains(t5)) {
         	System.out.println(t5.toString() +" is in playlist");
         } else {
