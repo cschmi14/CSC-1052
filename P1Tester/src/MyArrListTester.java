@@ -15,6 +15,8 @@ public class MyArrListTester {
         List.add(1,5);
         List.add(2,2);
         List.set(2,5);
+        List.remove(0);
+        List.remove(1);
 		
 		for (int i = 0; i < List.size(); i++) {
 			System.out.print(List.get(i) + " ");

@@ -1,7 +1,7 @@
 
-public class MyArrayList<T>{
+public class MyArrayList<T> implements ListInterface<T>{
 
-	T[] arr = (T[]) new Object[5];
+	T[] arr = (T[]) new Object[DEFAULT_CAPACITY];
 	
 	/**
 	 * Adds an element to the list, keeping the order of the list in tact
