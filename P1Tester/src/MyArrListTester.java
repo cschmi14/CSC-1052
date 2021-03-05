@@ -14,7 +14,7 @@ public class MyArrListTester {
         List.add(5);
         List.add(1,5);
         List.add(2,2);
-        List.set(2,5);
+        List.set(5,5);
         List.remove(0);
         List.remove(1);
 		
