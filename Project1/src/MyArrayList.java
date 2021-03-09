@@ -1,4 +1,4 @@
-
+//@author Carter Schmidt
 public class MyArrayList<T> implements ListInterface<T>{
 
 	T[] arr = (T[]) new Object[DEFAULT_CAPACITY];
@@ -10,8 +10,19 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 */
 	
 	public void add(T t) {
-		T element = arr[0];
+		//element is used to check for null values
+		T element;
+		//check for empty array, make it array of length 1 if it is
+		if (arr.length > 0) {
+			element = arr[0];
+		}
+		else {
+			T[] arr1 = (T[]) new Object[arr.length + 1];
+			arr = arr1;
+			element = arr[0];
+		}
 		boolean full = true;
+		//if not full, then a null value is present and is replaced with t
 		for (int i = 0; i < arr.length; i++) {
 			
 			element = arr[i];
@@ -19,7 +30,7 @@ public class MyArrayList<T> implements ListInterface<T>{
 				arr[i] = t;
 				full = false;
 			}
-			
+		//if full, the array is copied to an enlarged array and t is added to the end
 		}
 		if (full) {
 			T[] arr2 = (T[]) new Object[arr.length + 1];
@@ -61,7 +72,7 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 * @return true if item is successfully removed, otherwise return false
 	 */
 	public boolean remove(T t) {
-		
+		//copy array to shorter array, and don't copy the element at index where t is found
 		for (int k = 0; k < arr.length; k++) {
 			if (arr[k] == t) {
 				T[] arr2 = (T[]) new Object[arr.length - 1];
@@ -86,6 +97,7 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 * at position larger than the array size.
 	 */
 	public void remove(int pos) throws MyIndexOutOfBoundsException, ArrayIndexOutOfBoundsException {
+		//copy array to shorter array, and don't copy the element at index pos on original array
 		if (pos >= arr.length || pos < 0) {
 			throw new MyIndexOutOfBoundsException();
 		}
@@ -108,36 +120,38 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 * at position larger than the array size.
 	 */
 	public void add(int pos, T t) throws MyIndexOutOfBoundsException, ArrayIndexOutOfBoundsException {
-		T element = arr[0];
-		boolean full = true;
+		//element used copy values from array to array
+		T element;
+		//check for empty array, make it array of length 1 if it is
+		if (arr.length > 0) {
+			element = arr[0];
+		}
+		else {
+			T[] arr1 = (T[]) new Object[arr.length + 1];
+			arr = arr1;
+			element = arr[0];
+		}
+		
+		//check if valid pos
 		if (pos > arr.length || pos < 0) {
 			throw new MyIndexOutOfBoundsException();
 		}
+		
 		else {
-			for (int i = 0; i < arr.length; i++) {
+		//make new array and copy values until pos, then add t, then continue copying
+			T[] arr2 = (T[]) new Object[arr.length + 1];
+			for (int i = 0, j = 0; i < arr.length; i++, j++) {				
 				element = arr[i];
-				if (element == null) {
-					full = false;
-				}			
-			}
-			if (full) {
-				T[] arr2 = (T[]) new Object[arr.length + 1];
-				for (int i = 0, j = 0; i < arr.length; i++, j++) {				
-					element = arr[i];
-					if (j == pos) {
-						arr2[j] = t;
-						i--;
-					}
-					else {
-						arr2[j] = element;
-					}
+				if (j == pos) {
+					arr2[j] = t;
+					i--;
 				}
-				arr2[pos] = t;
-				arr = arr2;
+				else {
+					arr2[j] = element;
+				}
 			}
-			else {
-				arr[pos] = t;
-			}
+			arr = arr2;
+			
 		}
 		
 	}
@@ -151,21 +165,15 @@ public class MyArrayList<T> implements ListInterface<T>{
 	 * at position larger than the array size.
 	 */
 	public void set(int pos, T t) throws MyIndexOutOfBoundsException, ArrayIndexOutOfBoundsException {
-		
+		//element used to check for null values
 		T element = arr[0];
-		boolean full = true;
 		if (pos > arr.length || pos < 0) {
 			throw new MyIndexOutOfBoundsException();
 		}
 		else {
-			for (int i = 0; i < arr.length; i++) {
-				element = arr[i];
-				if (element == null) {
-					full = false;
-				}			
-			}
-			if (full) {
-				T[] arr2 = (T[]) new Object[arr.length];
+			//if pos is equal to arr.length, copy array to bigger array and add t to end of new array
+			if (pos == arr.length) {
+				T[] arr2 = (T[]) new Object[arr.length + 1];
 				for (int i = 0; i < arr.length; i++) {				
 					element = arr[i];
 					arr2[i] = element;
@@ -173,6 +181,7 @@ public class MyArrayList<T> implements ListInterface<T>{
 				arr2[pos] = t;
 				arr = arr2;
 			}
+			//if pos < arr.length, simply set element at index pos to t
 			else {
 				arr[pos] = t;
 			}

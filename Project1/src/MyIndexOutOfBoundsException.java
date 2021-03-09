@@ -1,4 +1,4 @@
-
+//@author Carter Schmidt
 public class MyIndexOutOfBoundsException extends RuntimeException {
 
 	public MyIndexOutOfBoundsException() {
