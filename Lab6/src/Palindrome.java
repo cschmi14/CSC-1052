@@ -7,27 +7,33 @@ public class Palindrome {
 	 * @return true if s is a palindrome
 	 */
 	public boolean palidromeRecur(String s) {
-		
-		//create new String str with only the lowercase characters from s
-		String str = "";
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i) > 96 && s.charAt(i) < 123) {
-				str += s.charAt(i);
-			}
-		}
 		//if the String has 1 or less characters, then true because it is palindrome
-		if (str.length() < 2) {
+		if (s.length() < 2) {
 			return true;
 		}
 
 		else {
 			/*
 			 *if the first and last characters are the same, remove them and call the method
-			 *again with the modified string str
+			 *again with the modified string s
 			 */
-			if (str.charAt(0) == str.charAt(str.length() - 1)) {
-				str = str.substring(1, str.length() - 1);
-				return palidromeRecur(str);
+			if (s.charAt(0) == s.charAt(s.length() - 1)) {
+				s = s.substring(1, s.length() - 1);
+				return palidromeRecur(s);
+			}
+			/*check for non-lowercase-letter chars with ascii table values:
+			 * if the first char is not a lowercase letter, remove it with substring
+			 * and run the method again
+			 * if the last char is not a lowercase letter, remove it with substring
+			 * and run the method again
+			 */
+			else if (s.charAt(0) < 97 || s.charAt(0) > 124) {
+				s = s.substring(1);
+				return palidromeRecur(s);
+			}
+			else if (s.charAt(s.length() - 1) < 97 || s.charAt(s.length() - 1) > 124) {
+				s = s.substring(0, s.length() - 1);
+				return palidromeRecur(s);
 			}
 		}
 		/*if enough characters are not removed through recursion to
