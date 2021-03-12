@@ -1,4 +1,4 @@
-
+//@author Carter Schmidt
 public class Palindrome {
 
 	/**
@@ -57,7 +57,7 @@ public class Palindrome {
 				str += s.charAt(i);
 			}
 		}
-		
+
 		/*Loop as long as the str is more than 1 character since if it has 1 or 0 characters 
 		 * then it is a palindrome.
 		 * If the first and last chars are the same, remove them and loop again until it has
