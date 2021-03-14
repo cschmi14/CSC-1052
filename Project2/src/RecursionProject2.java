@@ -70,7 +70,12 @@ public class RecursionProject2 {
 			return Integer.toString(countTo);
 		}
 		else {
-			return (countToBy(countTo - by, by) + ", ") + countTo;
+			if (by <= countTo) {
+				return (countToBy(countTo - by, by) + ", ") + countTo;
+			}
+			else {
+				return Integer.toString(countTo);
+			}
 		}
 	}
 	
@@ -83,7 +88,19 @@ public class RecursionProject2 {
 	 * and the call of evenDigits(35179) should return 0.*/
 	
 	public int evenDigits(int n) {
-		return 0;
+		String str = Integer.toString(n);
+		if (n == 0) {
+			return 0;
+		}
+		else {
+			if (n % 2 == 0) {
+				str = Integer.toString(evenDigits(n / 10)) + Integer.toString(n % 10);
+			}
+			else {
+				return evenDigits(n / 10);
+			}
+			return Integer.parseInt(str);
+		}
 	}
 	
 	/**
@@ -129,7 +146,15 @@ public class RecursionProject2 {
 	 */
 	
 	public String zigzag(int n) {
-		return null;
+		if (n == 2) {
+			return "**";
+		}
+		else if (n == 1) {
+			return "*";
+		}
+		else {
+			return "<" + zigzag(n - 2) + ">";
+		}
 	}
 		
 	/**
@@ -144,24 +169,24 @@ public class RecursionProject2 {
 	
 	public boolean isSimplePalindrome(String str) {			 
 		//if the String has 1 or less characters, then true because it is palindrome
-			if (str.length() < 2) {
-				return true;
-			}
-			else {
-				/*
-				 *if the first and last characters are the same, remove them and call the method
-				 *again with the modified string str
-				 */
-				if (str.charAt(0) == str.charAt(str.length() - 1)) {
-					str = str.substring(1, str.length() - 1);
-					return isSimplePalindrome(str);
-				}
-			}
-			/*if enough characters are not removed through recursion to
-			 * make the str a palindrome (1 or 0 characters), then the
-			 * String str must not be a palindrome.
+		if (str.length() < 2) {
+			return true;
+		}
+		else {
+			/*
+			 *if the first and last characters are the same, remove them and call the method
+			 *again with the modified string str
 			 */
-			return false;
+			if (str.charAt(0) == str.charAt(str.length() - 1)) {
+				str = str.substring(1, str.length() - 1);
+				return isSimplePalindrome(str);
+			}
+		}
+		/*if enough characters are not removed through recursion to
+		 * make the str a palindrome (1 or 0 characters), then the
+		 * String str must not be a palindrome.
+		 */
+		return false;
 	}
 		
 	/**
