@@ -98,7 +98,17 @@ public class RecursionProject2 {
 	 */
 	
 	public int array11(int[] nums, int index) {
-		  return 0;
+		  if (index == nums.length) {
+			  return 0;
+		  }
+		  else {
+			  if (nums[index] == 11) {
+				  return 1 + array11(nums, index + 1);
+			  }
+			  else {
+				  return array11(nums, index + 1);
+			  }
+		  }
 	  
 	}
 	
@@ -133,8 +143,25 @@ public class RecursionProject2 {
 	 */
 	
 	public boolean isSimplePalindrome(String str) {			 
-		  
-		 return false;
+		//if the String has 1 or less characters, then true because it is palindrome
+			if (str.length() < 2) {
+				return true;
+			}
+			else {
+				/*
+				 *if the first and last characters are the same, remove them and call the method
+				 *again with the modified string str
+				 */
+				if (str.charAt(0) == str.charAt(str.length() - 1)) {
+					str = str.substring(1, str.length() - 1);
+					return isSimplePalindrome(str);
+				}
+			}
+			/*if enough characters are not removed through recursion to
+			 * make the str a palindrome (1 or 0 characters), then the
+			 * String str must not be a palindrome.
+			 */
+			return false;
 	}
 		
 	/**
@@ -147,8 +174,18 @@ public class RecursionProject2 {
 	   stringClean("abbbcdd") -> abcd
 	 */
 		
-	public static String stringClean(String str) {
-		return null;
+	public  String stringClean(String str) {
+		if (str.length() < 2) {
+			return str;
+		}
+		else {
+			if (str.charAt(0) == str.charAt(1)) {
+				return stringClean(str.substring(1));
+			}
+			else {
+				return str.substring(0,1) + stringClean(str.substring(1));
+			}
+		}
 	}
 		
 	/**
@@ -166,6 +203,14 @@ public class RecursionProject2 {
 	 */
 		
 	public int fibonacci(int n) {
-		return 0;
+		if (n == 0) {
+			return 0;
+		}
+		else if (n == 1) {
+			return 1;
+		}	
+		else {
+			return fibonacci(n - 1) + fibonacci(n - 2);
+		}
 	}
 }
