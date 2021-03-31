@@ -49,6 +49,7 @@ public class PalindromeDate {
 		String month;
 		String day;
 		String fullDate;
+		//if statements check to see how many days are in the month since each month has a different number of days.
 		for (int y = startYear; y <= endYear; y++) {
 			for (int m = 1; m < 13; m++) {
 				if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
